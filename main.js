@@ -6,9 +6,14 @@ const date = document.getElementById("date");
 const time = document.getElementById("time");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  localStorage.setItem("name", name1.value);
-  localStorage.setItem("emailid", email.value);
-  localStorage.setItem("number", number.value);
-  localStorage.setItem("date", date.value);
-  localStorage.setItem("time", time.value);
+  let myobj = {
+    name: name1.value,
+    email: email.value,
+    number: number.value,
+    date: date.value,
+    time: time.value,
+  };
+  let myobj1 = JSON.stringify(myobj);
+  localStorage.setItem("myobj1", myobj1);
+  console.log(myobj1);
 });
