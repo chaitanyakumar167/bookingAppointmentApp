@@ -14,11 +14,11 @@
         margin-top: 40px;
       }
     </style>
-    <title>Formt</title>
+    <title>Booking app</title>
   </head>
   <body class="bg-body-secondary">
     <div class="container col-lg-6 offset-lg-3 bg-body-secondary">
-      <form action="#" id="form">
+      <form action="#" id="form" novalidate>
         <label for="name" class="form-label">Name</label>
         <input
           type="text"
@@ -26,6 +26,7 @@
           id="name"
           name="name"
           placeholder="enter name"
+          required
         />
         <label for="email" class="form-label">Email</label>
         <input
@@ -34,6 +35,7 @@
           id="email"
           name="email"
           placeholder="enter email"
+          required
         />
         <label for="number" class="form-label">Number</label>
         <input
@@ -42,11 +44,24 @@
           id="number"
           name="number"
           placeholder="enter mobile number"
+          required
         />
         <label for="tfc" class="form-label">Time for call</label>
         <div class="input-group">
-          <input type="date" name="tfc" id="date" class="form-control" />
-          <input type="time" name="tfc" id="time" class="form-control" />
+          <input
+            type="date"
+            name="tfc"
+            id="date"
+            class="form-control"
+            required
+          />
+          <input
+            type="time"
+            name="tfc"
+            id="time"
+            class="form-control"
+            required
+          />
         </div>
         <br />
         <button class="btn btn-primary" type="submit">submit</button>
