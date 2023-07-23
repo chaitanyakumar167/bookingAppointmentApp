@@ -5,6 +5,7 @@ const number = document.getElementById("number");
 const date = document.getElementById("date");
 const time = document.getElementById("time");
 const list = document.getElementById("list");
+
 form.addEventListener("submit", function (e) {
   if (!form.checkValidity()) {
     e.preventDefault();
@@ -18,8 +19,16 @@ form.addEventListener("submit", function (e) {
       date: date.value,
       time: time.value,
     };
-    let myobj1 = JSON.stringify(myobj);
-    localStorage.setItem(email.value, myobj1);
+
+    axios
+      .post(
+        "https://crudcrud.com/api/35e3b43a4c4646d985e69878a6b32452/BookingApp",
+        myobj
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    // let myobj1 = JSON.stringify(myobj);
+    // localStorage.setItem(email.value, myobj1);
     showItems(myobj);
   }
   form.classList.add("was-validated");
@@ -37,15 +46,19 @@ function showItems(obj) {
 
   li.appendChild(
     document.createTextNode(
-      name1.value +
+      obj.name +
         "   " +
-        email.value +
+        " - " +
+        obj.email +
         "   " +
-        number.value +
+        " - " +
+        obj.number +
         "   " +
-        date.value +
+        " - " +
+        obj.date +
         "   " +
-        time.value
+        " - " +
+        obj.time
     )
   );
   deletebtn.onclick = () => {
@@ -65,3 +78,17 @@ function showItems(obj) {
   li.appendChild(deletebtn);
   list.appendChild(li);
 }
+function showAllBookings() {
+  axios
+    .get("https://crudcrud.com/api/35e3b43a4c4646d985e69878a6b32452/BookingApp")
+    .then((res) => {
+      const data = res.data;
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        showItems(data[i]);
+      }
+    })
+    .catch((err) => console.log(err));
+}
+
+window.addEventListener("DOMContentLoaded", showAllBookings);
