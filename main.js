@@ -1,4 +1,5 @@
 const form = document.getElementById("form");
+const submitbtn = document.getElementById("submit");
 const name1 = document.getElementById("name");
 const email = document.getElementById("email");
 const number = document.getElementById("number");
@@ -8,7 +9,7 @@ const list = document.getElementById("list");
 
 // crudcrud url
 const url =
-  "https://crudcrud.com/api/9985b7a0588a41539d2755fc68e7e2cc/BookingApp";
+  "https://crudcrud.com/api/842b8f4cbd924c84bfde41b39950dc7f/BookingApp";
 
 form.addEventListener("submit", function (e) {
   if (!form.checkValidity()) {
@@ -75,8 +76,30 @@ function showItems(obj) {
     number.value = obj.number;
     date.value = obj.date;
     time.value = obj.time;
-    localStorage.removeItem(obj.email);
+    let id = obj._id;
     list.removeChild(li);
+    axios
+      .delete(`${url}/${id}`)
+      .then((res) => {})
+      .catch((err) => console.log(err));
+    // submitbtn.addEventListener(
+    //   "click",
+    //   () => {
+    //     let editedObj = {
+    //       name: name1.value,
+    //       email: email.value,
+    //       number: number.value,
+    //       date: date.value,
+    //       time: time.value,
+    //     };
+    //     axios
+    //       .put(`${url}/${id}`, editedObj)
+    //       .then((res) => console.log(`${url}/${id}`));
+    //   },
+    //   { once: true }
+    // );
+
+    //localStorage.removeItem(obj.email);
   };
   li.appendChild(editbtn);
   li.appendChild(deletebtn);
