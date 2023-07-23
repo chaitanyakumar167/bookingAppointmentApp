@@ -32,8 +32,13 @@ form.addEventListener("submit", function (e) {
     // let myobj1 = JSON.stringify(myobj);
     // localStorage.setItem(email.value, myobj1);
     showItems(myobj);
+    name1.value = "";
+    email.value = "";
+    number.value = "";
+    date.value = "";
+    time.value = "";
   }
-  form.classList.add("was-validated");
+  //form.classList.add("was-validated");
 });
 
 function showItems(obj) {
